@@ -1,0 +1,16 @@
+/home/jaytee/Workspace/tubaf-swe-2021/00 - Entwicklungsumgebung, Datentypen, Ein- und Ausgabe/hello_world/bin/Debug/net5.0/hello_world
+/home/jaytee/Workspace/tubaf-swe-2021/00 - Entwicklungsumgebung, Datentypen, Ein- und Ausgabe/hello_world/bin/Debug/net5.0/hello_world.deps.json
+/home/jaytee/Workspace/tubaf-swe-2021/00 - Entwicklungsumgebung, Datentypen, Ein- und Ausgabe/hello_world/bin/Debug/net5.0/hello_world.runtimeconfig.json
+/home/jaytee/Workspace/tubaf-swe-2021/00 - Entwicklungsumgebung, Datentypen, Ein- und Ausgabe/hello_world/bin/Debug/net5.0/hello_world.runtimeconfig.dev.json
+/home/jaytee/Workspace/tubaf-swe-2021/00 - Entwicklungsumgebung, Datentypen, Ein- und Ausgabe/hello_world/bin/Debug/net5.0/hello_world.dll
+/home/jaytee/Workspace/tubaf-swe-2021/00 - Entwicklungsumgebung, Datentypen, Ein- und Ausgabe/hello_world/bin/Debug/net5.0/ref/hello_world.dll
+/home/jaytee/Workspace/tubaf-swe-2021/00 - Entwicklungsumgebung, Datentypen, Ein- und Ausgabe/hello_world/bin/Debug/net5.0/hello_world.pdb
+/home/jaytee/Workspace/tubaf-swe-2021/00 - Entwicklungsumgebung, Datentypen, Ein- und Ausgabe/hello_world/obj/Debug/net5.0/hello_world.csprojAssemblyReference.cache
+/home/jaytee/Workspace/tubaf-swe-2021/00 - Entwicklungsumgebung, Datentypen, Ein- und Ausgabe/hello_world/obj/Debug/net5.0/hello_world.GeneratedMSBuildEditorConfig.editorconfig
+/home/jaytee/Workspace/tubaf-swe-2021/00 - Entwicklungsumgebung, Datentypen, Ein- und Ausgabe/hello_world/obj/Debug/net5.0/hello_world.AssemblyInfoInputs.cache
+/home/jaytee/Workspace/tubaf-swe-2021/00 - Entwicklungsumgebung, Datentypen, Ein- und Ausgabe/hello_world/obj/Debug/net5.0/hello_world.AssemblyInfo.cs
+/home/jaytee/Workspace/tubaf-swe-2021/00 - Entwicklungsumgebung, Datentypen, Ein- und Ausgabe/hello_world/obj/Debug/net5.0/hello_world.csproj.CoreCompileInputs.cache
+/home/jaytee/Workspace/tubaf-swe-2021/00 - Entwicklungsumgebung, Datentypen, Ein- und Ausgabe/hello_world/obj/Debug/net5.0/hello_world.dll
+/home/jaytee/Workspace/tubaf-swe-2021/00 - Entwicklungsumgebung, Datentypen, Ein- und Ausgabe/hello_world/obj/Debug/net5.0/ref/hello_world.dll
+/home/jaytee/Workspace/tubaf-swe-2021/00 - Entwicklungsumgebung, Datentypen, Ein- und Ausgabe/hello_world/obj/Debug/net5.0/hello_world.pdb
+/home/jaytee/Workspace/tubaf-swe-2021/00 - Entwicklungsumgebung, Datentypen, Ein- und Ausgabe/hello_world/obj/Debug/net5.0/hello_world.genruntimeconfig.cache

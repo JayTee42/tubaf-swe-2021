@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "/home/jaytee/.dotnet/store/|arch|/|tfm|",
+      "/home/jaytee/.nuget/packages"
+    ]
+  }
+}
