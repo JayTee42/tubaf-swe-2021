@@ -7,4 +7,4 @@ aufgrund der Corona-Pandemie findet die Übung für Softwareentwicklung zur Vorl
 ## Inhalte
 Datum | Thema | Materialien
 --- | --- | ---
-04.05.2021 | Entwicklungsumgebung, Datentypen, Ein- / Ausgabe | <ul><li>[VS Code](https://code.visualstudio.com/)</li><li>[VS Community](https://visualstudio.microsoft.com/de/vs/community/)</li><li>[Dokumentation für *dotnet*](https://docs.microsoft.com/en-us/dotnet/core/tools/)</li><li>[Aufgabe 0](https://github.com/ComputerScienceLecturesTUBAF/SoftwareentwicklungSoSe2021_Aufgabe_00)</li></ul>
+04.05.2021 | Entwicklungsumgebung, Datentypen, Ein- und Ausgabe | <ul><li>[VS Code](https://code.visualstudio.com/)</li><li>[VS Community](https://visualstudio.microsoft.com/de/vs/community/)</li><li>[Dokumentation für *dotnet*](https://docs.microsoft.com/en-us/dotnet/core/tools/)</li><li>[Aufgabe 0](https://github.com/ComputerScienceLecturesTUBAF/SoftwareentwicklungSoSe2021_Aufgabe_00)</li></ul>
