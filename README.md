@@ -7,5 +7,4 @@ aufgrund der Corona-Pandemie findet die Übung für Softwareentwicklung zur Vorl
 ## Inhalte
 Datum | Thema | Materialien
 --- | --- | ---
-04.05.2021 | Entwicklungsumgebung, Datentypen, Ein- / Ausgabe | <ul><li>[Aufgabe 0](https://github.com/ComputerScienceLecturesTUBAF/SoftwareentwicklungSoSe2021_Aufgabe_00)</li><li>[Aufgabe 1](https://github.com/ComputerScienceLecturesTUBAF/SoftwareentwicklungSoSe2020_Aufgabe_01)</li><li>[Classroom](https://classroom.github.com/g/7PtFgs9W)</li></ul>
-</ul>
+04.05.2021 | Entwicklungsumgebung, Datentypen, Ein- / Ausgabe | <ul><li>[Aufgabe 0](https://github.com/ComputerScienceLecturesTUBAF/SoftwareentwicklungSoSe2021_Aufgabe_00)</li></ul>
