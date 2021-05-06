@@ -16,10 +16,34 @@ class Program
     {
         // C# ist statisch / stark typisiert!
         // Typ-Inferenz mit "var"
-        var description = "Günther";
-        var regNum = 12345u;
-        var category = 'a';
-        var luminosity = 34346.336;
+        Console.Write("Description -> ");
+        var description = Console.ReadLine();
+
+        uint regNum;
+        char category;
+        double luminosity;
+
+        try
+        {
+            Console.Write("Registry number -> ");
+            regNum = uint.Parse(Console.ReadLine());
+
+            Console.Write("Category -> ");
+            category = char.Parse(Console.ReadLine());
+
+            Console.Write("Luminosity -> ");
+            luminosity = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+        }
+        catch (FormatException)
+        {
+            Console.WriteLine("Bad input format (e.g. letters in numbers ...)!");
+            return;
+        }
+        catch (OverflowException)
+        {
+            Console.WriteLine("Input contains a numeric overflow.");
+            return;
+        }
 
         // String-Interpolation mit $"... {} ...":
         Console.WriteLine($"Name: { description }");
