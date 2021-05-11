@@ -51,7 +51,7 @@ class Program
         default: Console.WriteLine("Invalid volume selection (only S, M, or L)!"); return;
         }
 
-        // Calculate the number of payed minutes.
+        // Calculate the number of paid minutes.
         var paidMinutes = Math.Max(Math.Ceiling(minutes) - freeMinutes, 0.0);
 
         // Calculate the total fees.
