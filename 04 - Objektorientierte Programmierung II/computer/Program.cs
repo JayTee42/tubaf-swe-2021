@@ -10,5 +10,8 @@ class Program
         Console.WriteLine($"User: { comp.User }");
         comp.ChangeUser("jonas");
         Console.WriteLine($"User: { comp.User }");
+
+        // Test the `SaveFile()` method:
+        comp.SaveFile("test.txt");
     }
 }
