@@ -10,6 +10,9 @@ class Computer
     // Is the computer in a crashed state?
     public bool IsCrashed { get; private set; }
 
+    // A generator for random numbers (testing for crashes):
+    private static Random _rand = new Random();
+
     // Constructor:
     public Computer()
     {
@@ -41,20 +44,27 @@ class Computer
         Console.WriteLine($"Saving file: { fullPath }");
 
         // Test (via random numbers ...) if the computer crashes.
-        /*
-            if (...)
-            {
-                IsCrashed = true;
-                Console.WriteLine("Computer has crashed!");
+        if (_rand.Next(0, 4) == 3)
+        {
+            IsCrashed = true;
+            Console.WriteLine("Computer has crashed while saving the file!");
 
-                throw new InvalidOperationException("Crash!");
-            }
-        */
+            throw new InvalidOperationException("Crash!");
+        }
     }
 
     // Overloading ("Überladung"):
     public void SaveFile(string name)
     {
         SaveFile("Desktop", name);
+    }
+
+    public void Reboot()
+    {
+        Console.WriteLine("Rebooting ...");
+        Thread.Sleep(3000);
+        Console.WriteLine("Reboot successful!");
+
+        IsCrashed = false;
     }
 }
