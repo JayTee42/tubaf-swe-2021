@@ -10,6 +10,15 @@ class Computer
     // Is the computer in a crashed state?
     public bool IsCrashed { get; private set; }
 
+    // The current IP address
+    private byte[] _ipAddress;
+
+    public string IPAddress
+    {
+        get => IPTools.IPAddressToString(_ipAddress);
+        set => _ipAddress = IPTools.StringToIPAddress(value);
+    }
+
     // A generator for random numbers (testing for crashes):
     private static Random _rand = new Random();
 
@@ -18,6 +27,7 @@ class Computer
     {
         User = "Administrator";
         IsCrashed = false;
+        _ipAddress = IPTools.LocalHost;
     }
 
     public void ChangeUser(string newUser)
