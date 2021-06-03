@@ -77,4 +77,9 @@ class Computer
 
         IsCrashed = false;
     }
+
+    public void BurnBluray(string label, string content, out Bluray blurayToBurn)
+    {
+        blurayToBurn = new Bluray(label, content);
+    }
 }
