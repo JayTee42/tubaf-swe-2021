@@ -47,7 +47,7 @@ class Number
 
     // Operator overloading:
     public static Number operator +(Number lhs, Number rhs) => new Number(lhs._val + rhs._val);
-    public static Number operator -(Number lhs, Number rhs) => new Number((lhs._val < rhs._val) ? 0 : lhs._val - rhs._val);
+    public static Number operator -(Number lhs, Number rhs) => new Number((lhs < rhs) ? 0 : lhs._val - rhs._val);
     public static Number operator *(Number lhs, Number rhs) => new Number(lhs._val * rhs._val);
     public static Number operator /(Number lhs, Number rhs) => new Number(lhs._val / rhs._val);
 
