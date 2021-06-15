@@ -1,0 +1,6 @@
+using System;
+
+interface IStrokeable
+{
+
+}

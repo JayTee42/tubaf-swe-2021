@@ -1,0 +1,93 @@
+@startuml
+class Object
+{
+    + ToString(): string << virtual >>
+}
+
+abstract class Pet
+{
+    + Name: string << get, set >>
+    + Owner: string << get >>
+    
+    + Pet(name: string, owner: string) << constructor >>
+    + Pet(name: string) << constructor >>
+    + {abstract} Attend(): void
+}
+
+Object <|-- Pet
+
+abstract class Mammal
+{
+    + Mammal(name: string, owner: string) << constructor >>
+    + Mammal(name: string) << constructor >>
+    + {abstract} Move(): void
+    + Stroke(): void << virtual >>
+}
+
+Pet <|-- Mammal
+
+abstract class Fish
+{
+    + Fish(name: string, owner: string) << constructor >>
+    + Fish(name: string) << constructor >>
+    + {abstract} Swim(): void
+    + Attend(): void << override >>
+}
+
+Pet <|-- Fish
+
+class Bunny
+{
+    + Bunny(name: string, owner: string) << constructor >>
+    + Bunny(name: string) << constructor >>
+    + Attend(): void << override >>
+    + Move(): void << override >>
+    + ToString(): string << override >>
+}
+
+Mammal <|-- Bunny
+
+class Cat
+{
+    - {static} _biteRand: Random << readonly >>
+
+    + Cat(name: string) << constructor >>
+    + Attend(): void << override >>
+    + Move(): void << override >>
+    + ToString(): string << override >>
+    + Stroke(): void << override >>
+}
+
+Mammal <|-- Cat
+
+class Goldfish
+{
+    + Goldfish(name: string, owner: string) << constructor >>
+    + Goldfish(name: string) << constructor >>
+    + Swim(): void << override >>
+    + ToString(): string << override >>
+    + Stroke(): void
+}
+
+Fish <|-- Goldfish
+
+class Guppy
+{
+    + Guppy(name: string, owner: string) << constructor >>
+    + Guppy(name: string) << constructor >>
+    + Swim(): void << override >>
+    + ToString(): string << override >>
+}
+
+Fish <|-- Guppy
+
+interface IStrokeable
+{
+    + {abstract} Stroke(): void
+}
+
+IStrokeable <|.. Mammal
+IStrokeable <|.. Goldfish
+
+hide empty members
+@enduml
