@@ -1,6 +1,6 @@
 using System;
 
-abstract class Mammal: Pet
+abstract class Mammal: Pet, IStrokeable
 {
     public Mammal(string name, string owner)
         : base(name, owner)
@@ -11,4 +11,6 @@ abstract class Mammal: Pet
     { }
 
     public abstract void Move();
+
+    public virtual void Stroke() => Console.WriteLine($"{ Name } is being stroked :)");
 }

@@ -18,4 +18,16 @@ abstract class Pet
     // => Only purpose: Override it in subclasses!
     // => implicitly virtual
     public abstract void Attend();
+
+    public override string ToString()
+    {
+        if(Owner is null)
+        {
+            return $"This is { GetType() } { Name }. They would love to be adopted!";
+        }
+        else
+        {
+            return $"This is { Owner }'s { GetType() } { Name }";
+        }
+    }
 }
