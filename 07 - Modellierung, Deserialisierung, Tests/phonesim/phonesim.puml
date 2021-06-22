@@ -1,0 +1,49 @@
+@startuml
+enum PhoneState
+{
+    Normal,
+    Silent
+}
+
+enum ConnectionState
+{
+    Online,
+    Offline
+}
+
+enum OperatingSystem
+{
+    OS_A,
+    OS_B
+}
+
+class Coordinates << struct >>
+{
+    + Longitude: double
+    + Latitude: double
+}
+
+class MobilePhone
+{
+    + PhoneNumber: string << get; private set; >>
+    + Position: Coordinates? << get; private set; virtual >>
+    
+    + ReceiveACall(incomingNumber: string): bool
+    + ReceiveAMessage(incomingNumber: string, text: string): bool
+    + RingAlarm(): bool
+}
+
+class SmartPhone
+{
+    - _position: Coordinates
+    + Position: Coordinates? << get; private set; override >>
+}
+
+MobilePhone <|-- SmartPhone
+PhoneState --* MobilePhone : + PhoneState << get; private set; >>
+ConnectionState --* MobilePhone : + ConnectionState << get; private set; >>
+OperatingSystem --o MobilePhone : + OS << get; private set; >>
+Coordinates --- MobilePhone
+
+hide empty members
+@enduml
