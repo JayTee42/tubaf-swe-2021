@@ -18,6 +18,27 @@ enum OperatingSystem
     OS_B
 }
 
+static class OperatingSystemExtensions
+{
+    public static bool SupportsMessages(this OperatingSystem os)
+    {
+        switch (os)
+        {
+        case OperatingSystem.OS_A: return true;
+        default: return false;
+        }
+    }
+
+    public static bool SupportsAlarm(this OperatingSystem os)
+    {
+        switch (os)
+        {
+        case OperatingSystem.OS_B: return true;
+        default: return false;
+        }
+    }
+}
+
 struct Coordinates
 {
     public double Longitude;
@@ -71,7 +92,7 @@ class MobilePhone
 
     public bool ReceiveAMessage(string incomingNumber, string text)
     {
-        if ((OS == OperatingSystem.OS_A) && (ConnectionState == ConnectionState.Online))
+        if (OS.SupportsMessages() && (ConnectionState == ConnectionState.Online))
         {
             Console.WriteLine($"Accepting message from { incomingNumber }: \"{ text }\"");
             return true;
@@ -85,7 +106,7 @@ class MobilePhone
 
     public bool RingAlarm()
     {
-        if (OS == OperatingSystem.OS_B)
+        if (OS.SupportsAlarm())
         {
             Console.WriteLine("Triggering alarm.");
             return true;
@@ -96,4 +117,26 @@ class MobilePhone
             return false;
         }
     }
+}
+
+class SmartPhone: MobilePhone
+{
+    private Coordinates _position;
+
+    public override Coordinates? Position
+    {
+        get
+        {
+            Console.WriteLine("Accepting position query.");
+            return _position;
+        }
+    }
+
+    public SmartPhone(string phoneNumber, PhoneState phoneState, ConnectionState connectionState, OperatingSystem os, Coordinates position)
+        : base(phoneNumber, phoneState, connectionState, os)
+    {
+        _position = position;
+    }
+
+    public void SetPosition(Coordinates position) => _position = position;
 }
