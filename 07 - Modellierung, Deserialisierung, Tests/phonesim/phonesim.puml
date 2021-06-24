@@ -21,22 +21,26 @@ class Coordinates << struct >>
 {
     + Longitude: double
     + Latitude: double
+    
+    + Coordinates(lon: double, lat: double) << ctor >>
 }
 
 class MobilePhone
 {
     + PhoneNumber: string << get; private set; >>
-    + Position: Coordinates? << get; private set; virtual >>
+    + Position: Coordinates? << get; virtual >>
     
     + ReceiveACall(incomingNumber: string): bool
     + ReceiveAMessage(incomingNumber: string, text: string): bool
     + RingAlarm(): bool
+    + MobilePhone(phoneNumber: string, phoneState: PhoneState, connectionState: ConnectionState, os: OperatingSystem) << ctor >>
 }
 
 class SmartPhone
 {
     - _position: Coordinates
-    + Position: Coordinates? << get; private set; override >>
+    + Position: Coordinates? << get; override >>
+    + SmartPhone(phoneNumber: string, phoneState: PhoneState, connectionState: ConnectionState, os: OperatingSystem, position: Coordinates) << ctor >>
 }
 
 MobilePhone <|-- SmartPhone
@@ -44,6 +48,55 @@ PhoneState --* MobilePhone : + PhoneState << get; private set; >>
 ConnectionState --* MobilePhone : + ConnectionState << get; private set; >>
 OperatingSystem --o MobilePhone : + OS << get; private set; >>
 Coordinates --- MobilePhone
+
+class Simulator
+{
+    + Tests: Test[] << get; >>
+    + Phones: Dictionary<string, MobilePhone> << get; >>
+    
+    + Simulator(phonePath: string, testPath: string)
+    + RunAllTests(resultPath: string)
+}
+
+abstract class Test
+{
+    + Id: uint { get; }
+    + PhoneNumber: string { get; }
+    
+    + Test(id: uint, phoneNumber: string) << ctor >>
+    + {abstract} Run(phone: MobilePhone): bool
+}
+
+class CallTest
+{
+    + CallerPhoneNumber: string << get; >>
+    
+    + CallTest(id: uint, phoneNumber: string, callerPhoneNumber: string) << ctor >>
+    + Run(phone: MobilePhone): bool << override >>
+}
+
+class MessageTest
+{
+
+}
+
+class AlarmTest
+{
+
+}
+
+class PositionTest
+{
+
+}
+
+Test <|-- CallTest
+Test <|-- MessageTest
+Test <|-- AlarmTest
+Test <|-- PositionTest
+
+Simulator --- Test
+Simulator --- MobilePhone
 
 hide empty members
 @enduml
