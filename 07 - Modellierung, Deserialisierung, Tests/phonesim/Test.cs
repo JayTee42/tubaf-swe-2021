@@ -83,3 +83,22 @@ class PositionTest: Test
         }
     }
 }
+
+enum TestResultType
+{
+    Success,
+    Failure,
+    PrecoditionFailure
+}
+
+struct TestResult
+{
+    public uint Id;
+    public TestResultType Result;
+
+    public TestResult(uint id, TestResultType result)
+    {
+        Id = id;
+        Result = result;
+    }
+}
