@@ -27,9 +27,9 @@ class CallTest : Test
     public override bool Run(MobilePhone phone)
     {
         var result = phone.ReceiveACall(CallerPhoneNumber);
+        var expectedResult = (phone.PhoneState != PhoneState.Silent) && (phone.ConnectionState == ConnectionState.Online);
 
-        // TODO
-        return false;
+        return result == expectedResult;
     }
 }
 
@@ -48,9 +48,9 @@ class MessageTest : Test
     public override bool Run(MobilePhone phone)
     {
         var result = phone.ReceiveAMessage(SenderPhoneNumber, Text);
+        var expectedResult = (phone.OS == OperatingSystem.OS_A) && (phone.ConnectionState == ConnectionState.Online);
 
-        // TODO
-        return false;
+        return result == expectedResult;
     }
 }
 
