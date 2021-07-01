@@ -30,7 +30,7 @@ static class CsvReader
         for (int i = 1; i < lines.Length; i++)
         {
             // Split the line and collect the trimmed values.
-            // Note: This approach cannot handle commas in string!
+            // Note: This approach cannot handle commas in strings!
             var values = lines[i].Split(',');
 
             if (keys.Length != values.Length)

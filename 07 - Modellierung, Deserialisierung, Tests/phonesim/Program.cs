@@ -4,6 +4,11 @@ class Program
 {
     static void Main(string[] args)
     {
-        CsvReader.ReadCsv("/home/jaytee/Downloads/ServiceTests.csv");
+        var dicts = CsvReader.ReadCsv("/home/jaytee/Downloads/SmartPhoneData.csv");
+
+        foreach (var dict in dicts)
+        {
+            var phone = PhoneDeserializer.Deserialize(dict);
+        }
     }
 }

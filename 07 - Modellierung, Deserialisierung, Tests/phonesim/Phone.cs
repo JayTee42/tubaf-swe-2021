@@ -24,8 +24,8 @@ static class OperatingSystemExtensions
     {
         switch (os)
         {
-        case OperatingSystem.OS_A: return true;
-        default: return false;
+            case OperatingSystem.OS_A: return true;
+            default: return false;
         }
     }
 
@@ -33,8 +33,8 @@ static class OperatingSystemExtensions
     {
         switch (os)
         {
-        case OperatingSystem.OS_B: return true;
-        default: return false;
+            case OperatingSystem.OS_B: return true;
+            default: return false;
         }
     }
 }
@@ -119,7 +119,7 @@ class MobilePhone
     }
 }
 
-class SmartPhone: MobilePhone
+class SmartPhone : MobilePhone
 {
     private Coordinates _position;
 

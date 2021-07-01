@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 static class DictExtensions
 {
@@ -25,7 +26,7 @@ static class DictExtensions
         // Throw a verbatim exception if the value is not present:
         var value = dict.QueryOptValue(keys);
 
-        if (value == null)
+        if (value is null)
         {
             var keyString = string.Join(',', keys);
             throw new ArgumentException($"Missing required entry: None of these keys is present: \"{ keyString }\"");
@@ -82,18 +83,19 @@ static class PhoneDeserializer
     private static string[] _longitudeKeys = { "longitude", "lon" };
     private static string[] _latitudeKeys = { "latitude", "lat" };
     private static string[] _osKeys = { "betriebssystem", "operatingsystem", "operating_system", "os" };
+    private static string[] _typeKeys = { "telefontyp", "typ", "phone_type", "type" };
 
     private static Coordinates? ParsePosition(string lonStr, string latStr)
     {
         if ((lonStr != null) && (latStr != null))
         {
             // Parse the string as doubles:
-            if (!double.TryParse(lonStr, out var lon))
+            if (!double.TryParse(lonStr, NumberStyles.Any, CultureInfo.InvariantCulture, out var lon))
             {
                 throw new ArgumentException($"Invalid longitude: \"{ lonStr }\"");
             }
 
-            if (!double.TryParse(latStr, out var lat))
+            if (!double.TryParse(latStr, NumberStyles.Any, CultureInfo.InvariantCulture, out var lat))
             {
                 throw new ArgumentException($"Invalid latitude: \"{ latStr }\"");
             }
@@ -110,6 +112,18 @@ static class PhoneDeserializer
         }
     }
 
+    private static bool IsSmartPhone(string optType, Coordinates? position)
+    {
+        // Do we have a "type" key?
+        if (optType != null)
+        {
+            return optType.ToLower().Contains("smart");
+        }
+
+        // No "type" key => fall back to position:
+        return position.HasValue;
+    }
+
     public static MobilePhone Deserialize(Dictionary<string, string> dict)
     {
         // Deserialize all the properties:
@@ -119,7 +133,24 @@ static class PhoneDeserializer
         var position = ParsePosition(dict.QueryOptValue(_longitudeKeys), dict.QueryOptValue(_latitudeKeys));
         var os = OperatingSystemDeserializer.Deserialize(dict.QueryValue(_osKeys));
 
-        // TODO: Differentiate between smart phones and mobile phones.
-        return null;
+        // Differentiate between smart phones and mobile phones:
+        var optType = dict.QueryOptValue(_typeKeys);
+
+        if (IsSmartPhone(optType, position))
+        {
+            // "Pattern matching": Bind the non-nullable value of "position" to "pos".
+            if (position is Coordinates pos)
+            {
+                return new SmartPhone(phoneNumber, phoneState, connectionState, os, pos);
+            }
+            else
+            {
+                throw new ArgumentException("Smartphone needs an initial non-null position.");
+            }
+        }
+        else
+        {
+            return new MobilePhone(phoneNumber, phoneState, connectionState, os);
+        }
     }
 }
