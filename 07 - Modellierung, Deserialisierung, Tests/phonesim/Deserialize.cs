@@ -154,3 +154,64 @@ static class PhoneDeserializer
         }
     }
 }
+
+static class TestTypeDeserializer
+{
+    public static TestType Deserialize(string str)
+    {
+        switch (str.ToLower())
+        {
+            case "call": case "anruf": case "sprachanruf": return TestType.Call;
+            case "message": case "msg": case "text": case "textnachricht": return TestType.Message;
+            case "alarm": return TestType.Alarm;
+            case "position": case "location": return TestType.Position;
+
+            default: throw new ArgumentException($"Unknown test type: \"{ str }\"");
+        }
+    }
+}
+
+static class TestDeserializer
+{
+    private static string[] _idKeys = { "id", "number", "nummer" };
+    private static string[] _phoneNumber1Keys = { "nummer1", "telefonnummer1", "number1" };
+    private static string[] _phoneNumber2Keys = { "nummer2", "telefonnummer2", "number2" };
+    private static string[] _typeKeys = { "type", "typ", "test", "test_type" };
+    private static string[] _textKeys = { "text", "message", "msg", "textnachricht", "nachricht" };
+
+    public static Test Deserialize(Dictionary<string, string> dict)
+    {
+        // Deserialize the shared properties:
+        var idStr = dict.QueryValue(_idKeys);
+
+        if (!uint.TryParse(idStr, out var id))
+        {
+            throw new FormatException($"Invalid ID: \"{ idStr }\"");
+        }
+
+        var phoneNumber1 = dict.QueryValue(_phoneNumber1Keys);
+
+        // Determine the type of the test:
+        var type = TestTypeDeserializer.Deserialize(dict.QueryValue(_typeKeys));
+
+        switch (type)
+        {
+            case TestType.Call:
+
+                var callerPhoneNumber = dict.QueryValue(_phoneNumber2Keys);
+                return new CallTest(id, phoneNumber1, callerPhoneNumber);
+
+            case TestType.Message:
+
+                var senderPhoneNumber = dict.QueryValue(_phoneNumber2Keys);
+                var text = dict.QueryOptValue(_textKeys) ?? "< test >";
+
+                return new MessageTest(id, phoneNumber1, senderPhoneNumber, text);
+
+            case TestType.Alarm: return new AlarmTest(id, phoneNumber1);
+            case TestType.Position: return new PositionTest(id, phoneNumber1);
+
+            default: throw new ArgumentException($"Unknown test type: { type }");
+        }
+    }
+}

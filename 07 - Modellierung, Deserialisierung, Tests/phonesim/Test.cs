@@ -14,7 +14,7 @@ abstract class Test
     public abstract bool Run(MobilePhone phone);
 }
 
-class CallTest: Test
+class CallTest : Test
 {
     public string CallerPhoneNumber { get; }
 
@@ -33,7 +33,7 @@ class CallTest: Test
     }
 }
 
-class MessageTest: Test
+class MessageTest : Test
 {
     public string SenderPhoneNumber { get; }
     public string Text { get; }
@@ -54,7 +54,7 @@ class MessageTest: Test
     }
 }
 
-class AlarmTest: Test
+class AlarmTest : Test
 {
     public AlarmTest(uint id, string phoneNumber)
         : base(id, phoneNumber)
@@ -63,7 +63,7 @@ class AlarmTest: Test
     public override bool Run(MobilePhone phone) => phone.RingAlarm() == phone.OS.SupportsAlarm();
 }
 
-class PositionTest: Test
+class PositionTest : Test
 {
     public PositionTest(uint id, string phoneNumber)
         : base(id, phoneNumber)
@@ -101,4 +101,12 @@ struct TestResult
         Id = id;
         Result = result;
     }
+}
+
+enum TestType
+{
+    Call,
+    Message,
+    Alarm,
+    Position
 }
