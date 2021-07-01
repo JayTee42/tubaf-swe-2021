@@ -30,8 +30,12 @@ class Simulator
 
     public void RunAllTests(string resultPath)
     {
-        foreach (var test in Tests)
+        var results = new Dictionary<string, string>[Tests.Length];
+
+        for (int i = 0; i < Tests.Length; i++)
         {
+            var test = Tests[i];
+
             // Execute the test if the preconditions are met:
             TestResultType resultType;
 
@@ -47,7 +51,11 @@ class Simulator
             // Construct the test result:
             var result = new TestResult(test.Id, resultType);
 
-            // TODO: Serialize and write to the CSV file.
+            // Serialize it:
+            results[i] = TestResultSerializer.Serialize(result);
         }
+
+        // Write all the serialized test results into a CSV file:
+        CsvWriter.WriteCsv(resultPath, TestResultSerializer.Keys, results);
     }
 }

@@ -56,5 +56,38 @@ static class CsvReader
 
 static class CsvWriter
 {
+    public static void WriteCsv(string path, string[] keys, Dictionary<string, string>[] values)
+    {
+        // Create an array for the lines:
+        var lines = new string[1 + values.Length];
 
+        // Write the header:
+        lines[0] = string.Join(',', keys);
+
+        // Write the values:
+        for (int i = 0; i < values.Length; i++)
+        {
+            // Collect all the values in the current row and order them:
+            var dict = values[i];
+            var dictValues = new string[keys.Length];
+
+            for (int j = 0; j < keys.Length; j++)
+            {
+                var key = keys[j];
+
+                if (!dict.TryGetValue(key, out var value))
+                {
+                    throw new FormatException($"CSV file misses key: \"{ key }\"");
+                }
+
+                dictValues[j] = value;
+            }
+
+            // Write a line for the row:
+            lines[i + 1] = string.Join(',', dictValues);
+        }
+
+        // Write all the lines to the given file:
+        File.WriteAllLines(path, lines);
+    }
 }

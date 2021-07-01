@@ -4,7 +4,7 @@ using System.Globalization;
 
 static class DictExtensions
 {
-    private static string[] _nullValues = { "", "-", "null" };
+    private static readonly string[] _nullValues = { "", "-", "null" };
 
     public static string QueryOptValue(this Dictionary<string, string> dict, string[] keys)
     {
@@ -77,13 +77,13 @@ static class OperatingSystemDeserializer
 
 static class PhoneDeserializer
 {
-    private static string[] _phoneNumberKeys = { "telefonnummer", "phonenumber", "nummer", "number" };
-    private static string[] _phoneStateKeys = { "telefonstatus", "phonestate", "phone_state" };
-    private static string[] _connectionStateKeys = { "verbindungsstatus", "connectionstate", "connection_state" };
-    private static string[] _longitudeKeys = { "longitude", "lon" };
-    private static string[] _latitudeKeys = { "latitude", "lat" };
-    private static string[] _osKeys = { "betriebssystem", "operatingsystem", "operating_system", "os" };
-    private static string[] _typeKeys = { "telefontyp", "typ", "phone_type", "type" };
+    private static readonly string[] _phoneNumberKeys = { "telefonnummer", "phonenumber", "nummer", "number" };
+    private static readonly string[] _phoneStateKeys = { "telefonstatus", "phonestate", "phone_state" };
+    private static readonly string[] _connectionStateKeys = { "verbindungsstatus", "connectionstate", "connection_state" };
+    private static readonly string[] _longitudeKeys = { "longitude", "lon" };
+    private static readonly string[] _latitudeKeys = { "latitude", "lat" };
+    private static readonly string[] _osKeys = { "betriebssystem", "operatingsystem", "operating_system", "os" };
+    private static readonly string[] _typeKeys = { "telefontyp", "typ", "phone_type", "type" };
 
     private static Coordinates? ParsePosition(string lonStr, string latStr)
     {
@@ -173,11 +173,11 @@ static class TestTypeDeserializer
 
 static class TestDeserializer
 {
-    private static string[] _idKeys = { "id", "number", "nummer" };
-    private static string[] _phoneNumber1Keys = { "nummer1", "telefonnummer1", "number1" };
-    private static string[] _phoneNumber2Keys = { "nummer2", "telefonnummer2", "number2" };
-    private static string[] _typeKeys = { "type", "typ", "test", "test_type" };
-    private static string[] _textKeys = { "text", "message", "msg", "textnachricht", "nachricht" };
+    private static readonly string[] _idKeys = { "id", "number", "nummer" };
+    private static readonly string[] _phoneNumber1Keys = { "nummer1", "telefonnummer1", "number1" };
+    private static readonly string[] _phoneNumber2Keys = { "nummer2", "telefonnummer2", "number2" };
+    private static readonly string[] _typeKeys = { "type", "typ", "test", "test_type" };
+    private static readonly string[] _textKeys = { "text", "message", "msg", "textnachricht", "nachricht" };
 
     public static Test Deserialize(Dictionary<string, string> dict)
     {
