@@ -33,6 +33,10 @@ namespace SetCollection
 
         public bool Remove(T item) => _list.Remove(item);
 
+        // Separate properties:
+        public int Cardinality => Count;
+        public bool IsEmpty => Count == 0;
+
         // Separate methods:
         public bool IsSubsetOf(Set<T> other)
         {
@@ -46,5 +50,64 @@ namespace SetCollection
 
             return true;
         }
+
+        public bool IsTrueSubsetOf(Set<T> other) => IsSubsetOf(other) && (Count < other.Count);
+
+        public Set<T> Intersect(Set<T> other)
+        {
+            var result = new Set<T>();
+
+            foreach (var element in this)
+            {
+                if (other.Contains(element))
+                {
+                    result.Add(element);
+                }
+            }
+
+            return result;
+        }
+
+        public Set<T> Union(Set<T> other)
+        {
+            var result = new Set<T>(this);
+
+            foreach (var element in other)
+            {
+                result.Add(element);
+            }
+
+            return result;
+        }
+
+        public Set<T> Subtract(Set<T> other)
+        {
+            var result = new Set<T>();
+
+            foreach (var element in this)
+            {
+                if (!other.Contains(element))
+                {
+                    result.Add(element);
+                }
+            }
+
+            return result;
+        }
+
+        // Constructors:
+        public Set() => _list = new List<T>();
+
+        public Set(IEnumerable<T> other)
+        {
+            _list = new List<T>();
+
+            foreach (var element in other)
+            {
+                Add(element);
+            }
+        }
+
+        public Set(int capacity) => _list = new List<T>(capacity);
     }
 }
