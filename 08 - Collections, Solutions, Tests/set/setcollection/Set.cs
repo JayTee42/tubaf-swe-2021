@@ -109,5 +109,31 @@ namespace SetCollection
         }
 
         public Set(int capacity) => _list = new List<T>(capacity);
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Set<T> other)
+            {
+                return IsSubsetOf(other) && (Count == other.Count);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            var hc = 0;
+
+            foreach (var element in this)
+            {
+                // XOR is commutative => the order of the elements does not matter.
+                // We will get the same hash code for all permutations of a fixed base list.
+                hc ^= element.GetHashCode();
+            }
+
+            return hc;
+        }
     }
 }
